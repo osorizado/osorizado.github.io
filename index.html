@@ -72,11 +72,24 @@
             color: #dd77b1;
         }
 
+        /* Texto de la invitación en la carta */
+        .invitation-text {
+            font-size: 18px;
+            color: #dd77b1;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 1;
+        }
+
         /* Ocultar la página principal inicialmente */
         #main-page {
             display: none;
             opacity: 0;
             transition: opacity 1s ease-in-out;
+            height: 100vh;
+            overflow-y: auto; /* Permite el desplazamiento en la segunda pantalla */
         }
 
         /* Página principal con la invitación */
@@ -115,6 +128,11 @@
             text-decoration: none;
         }
 
+        .button:hover {
+            background-color: #ffe4e1;
+            color: #dd77b1;
+        }
+
         /* Corazones en las esquinas para la segunda pantalla */
         .heart {
             position: absolute;
@@ -149,6 +167,8 @@
             width: 80%;
             height: 230px;
             border: none;
+            display: block;
+            margin: 0 auto;
         }
     </style>
 </head>
@@ -158,6 +178,7 @@
     <div id="envelope-page">
         <div class="envelope" id="envelope">
             <div class="flap"></div>
+            <div class="invitation-text">¡Tienes una invitación, Flavita!</div>
             <button id="open-btn">Abrir</button>
         </div>
     </div>
@@ -222,6 +243,7 @@
 
 </body>
 </html>
+
 
 
 

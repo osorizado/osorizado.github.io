@@ -42,21 +42,22 @@
         /* La parte superior del sobre en forma de triángulo */
         .flap {
             position: absolute;
-            top: 0;
+            top: -50px; /* Asegura que el triángulo esté alineado con el borde superior del sobre */
             left: 50%;
             width: 0;
             height: 0;
             border-left: 150px solid transparent;
             border-right: 150px solid transparent;
-            border-top: 100px solid #dd77b1; /* Ahora el triángulo está hacia abajo inicialmente */
+            border-bottom: 100px solid #dd77b1; /* El triángulo apunta hacia abajo inicialmente */
             transform: translateX(-50%);
             transform-origin: bottom; /* La rotación parte desde la base del triángulo */
             transition: transform 1s ease-in-out;
             z-index: 1;
         }
 
+        /* Al hacer clic, rota hacia arriba */
         .envelope.open .flap {
-            transform: translateX(-50%) rotateX(180deg); /* Rotación hacia arriba */
+            transform: translateX(-50%) rotateX(180deg); /* Rota hacia arriba desde la base */
         }
 
         .invitation-text {

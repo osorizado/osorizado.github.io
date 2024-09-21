@@ -7,39 +7,93 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #ffe4e1; /* Fondo rosado */
+            background-color: #ffe4e1;
             color: #333;
-            padding: 20px;
-            max-width: 600px;
-            margin: 0 auto;
+            margin: 0;
+            padding: 0;
+            overflow: hidden; /* Evita el desplazamiento cuando el sobre está en pantalla */
+        }
+
+        /* Página de inicio con el sobre */
+        #envelope-page {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #ffe4e1;
             position: relative;
         }
-        h1 {
+
+        /* Estilos del sobre cerrado */
+        .envelope {
+            width: 250px;
+            height: 150px;
+            background-color: white;
+            position: relative;
+            border: 2px solid #dd77b1;
+            border-radius: 10px;
+            text-align: center;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .flap {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            width: 100%;
+            height: 100%;
+            background-color: #dd77b1;
+            transform: translateX(-50%);
+            transform-origin: top;
+            transition: transform 1s ease-in-out;
+            z-index: 1;
+        }
+
+        .envelope.open .flap {
+            transform: translateX(-50%) rotateX(180deg);
+        }
+
+        #open-btn {
+            position: relative;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #dd77b1;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            z-index: 2;
+        }
+
+        #open-btn:hover {
+            background-color: #ffe4e1;
             color: #dd77b1;
         }
+
+        /* Ocultar la página principal inicialmente */
+        #main-page {
+            display: none;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+
+        /* Página principal con la invitación */
         .container {
             background-color: white;
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             padding: 20px;
-            position: relative; /* Relativo para contener los corazones */
+            max-width: 600px;
+            margin: 20px auto;
+            position: relative;
         }
-        .details {
-            margin-top: 20px;
+
+        h1 {
+            color: #dd77b1;
         }
-        a {
-            color: #2980b9;
-            text-decoration: none;
-        }
-        a:hover {
-            text-decoration: underline;
-        }
-        .footer {
-            margin-top: 30px;
-            text-align: center;
-            font-size: 14px;
-            color: #777;
-        }
+
         img {
             display: block;
             margin: 20px auto;
@@ -47,32 +101,7 @@
             max-width: 300px;
             border-radius: 8px;
         }
-        /* Estilo para los corazones en las esquinas dentro del contenedor */
-        .heart {
-            position: absolute;
-            width: 50px;
-            height: 50px;
-            background: url('heart.jpg') no-repeat center center;
-            background-size: contain;
-        }
-        .heart.top-left {
-            top: 0;
-            left: 0;
-        }
-        .heart.top-right {
-            top: 0;
-            right: 0;
-        }
-        .heart.bottom-left {
-            bottom: 0;
-            left: 0;
-        }
-        .heart.bottom-right {
-            bottom: 0;
-            right: 0;
-        }
 
-        /* Estilos para el botón */
         .button {
             display: inline-block;
             padding: 10px 20px;
@@ -85,21 +114,38 @@
             cursor: pointer;
             text-decoration: none;
         }
-        .button:hover {
-            background-color: #ffe4e1;
+
+        /* Corazones en las esquinas para la segunda pantalla */
+        .heart {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            background: url('heart.jpg') no-repeat center center;
+            background-size: contain;
         }
 
-        /* Estilos para la imagen centrada */
-        .centered-image {
-            display: block;
-            margin: 0 auto;
-            max-width: 200px; /* Ajusta este valor según el tamaño de la imagen */
+        .heart.top-left {
+            top: 0;
+            left: 0;
         }
 
-        /* Estilos para el iframe (Google Maps) */
+        .heart.top-right {
+            top: 0;
+            right: 0;
+        }
+
+        .heart.bottom-left {
+            bottom: 0;
+            left: 0;
+        }
+
+        .heart.bottom-right {
+            bottom: 0;
+            right: 0;
+        }
+
+        /* Estilo del mapa ajustado */
         iframe {
-            display: block;
-            margin: 20px auto;
             width: 80%;
             height: 230px;
             border: none;
@@ -108,47 +154,71 @@
 </head>
 <body>
 
-    <div class="container">
+    <!-- Página inicial con el sobre -->
+    <div id="envelope-page">
+        <div class="envelope" id="envelope">
+            <div class="flap"></div>
+            <button id="open-btn">Abrir</button>
+        </div>
+    </div>
+
+    <!-- Página principal con la invitación -->
+    <div id="main-page">
+        <!-- Corazones en las esquinas -->
         <div class="heart top-left"></div>
         <div class="heart top-right"></div>
         <div class="heart bottom-left"></div>
         <div class="heart bottom-right"></div>
 
-        <h1>¡6 MESECITOS PRINCESITA!</h1>
-        <p>Llegamos a nuestro primer semestre mi amorcito y por eso el lugar especial de este mes será...</p>
+        <div class="container">
+            <h1>¡6 MESECITOS PRINCESITA!</h1>
+            <p>Llegamos a nuestro primer semestre mi amorcito y por eso el lugar especial de este mes será...</p>
 
-        <!-- Imagen centrada en lugar del texto -->
-        <img src="title.png" alt="Troppo" class="centered-image">
+            <!-- Imagen centrada en lugar del texto -->
+            <img src="title.png" alt="Troppo" class="centered-image">
 
-        <p>Confirma tu asistencia mi amor en este link:</p>
-        <p>
-            <a href="https://restaurantes.mesa247.pe/reserva/e834112707733d34ffc164b04003d5b6/unete-a-la-reserva" class="button" target="_blank">
-                Confirmar asistencia
-            </a>
-        </p>
+            <p>Confirma tu asistencia mi amor en este link:</p>
+            <p>
+                <a href="https://restaurantes.mesa247.pe/reserva/e834112707733d34ffc164b04003d5b6/unete-a-la-reserva" class="button" target="_blank">
+                    Confirmar asistencia
+                </a>
+            </p>
 
-        <img src="novios.JPG" alt="Foto de la invitación">
+            <img src="novios.JPG" alt="Foto de la invitación">
 
-        <div class="details">
-            <h2 style="color: #dd77b1;">Detalles de la reserva</h2>
-            <p><strong style="color: #dd77b1;">TE INVITA TU NOVIECITO:</strong> Percy Marca Rojas</p>
-            <p><strong style="color: #dd77b1;">Fecha:</strong> Lunes, 23 de Septiembre del 2024</p>
-            <p><strong style="color: #dd77b1;">Hora:</strong> 7:30 PM</p>
-            <p><strong style="color: #dd77b1;">Restaurante:</strong> Troppo</p>
-            <p><strong style="color: #dd77b1;">Dirección:</strong> Calle Los Libertadores 199, San Isidro</p>
+            <div class="details">
+                <h2 style="color: #dd77b1;">Detalles de la reserva</h2>
+                <p><strong style="color: #dd77b1;">TE INVITA TU NOVIECITO:</strong> Percy Marca Rojas</p>
+                <p><strong style="color: #dd77b1;">Fecha:</strong> Lunes, 23 de Septiembre del 2024</p>
+                <p><strong style="color: #dd77b1;">Hora:</strong> 7:30 PM</p>
+                <p><strong style="color: #dd77b1;">Restaurante:</strong> Troppo</p>
+                <p><strong style="color: #dd77b1;">Dirección:</strong> Calle Los Libertadores 199, San Isidro</p>
+            </div>
+
+            <!-- Mapa de Google Maps centrado -->
+            <div class="map-container">
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3900.5404237094986!2d-77.03956722502872!3d-12.097112342511558!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9105c8616d2490c1%3A0x4094e5da9e874d8f!2sCalle%20Los%20Libertadores%20199%2C%20San%20Isidro%2015073%2C%20Per%C3%BA!5e0!3m2!1ses!2sus!4v1695217598567!5m2!1ses!2sus"
+                    allowfullscreen="" loading="lazy"></iframe>
+            </div>
+
+            <p>Te amo mucho y gracias por estos meses a tu lado princesa</p>
         </div>
-
-        <!-- Mapa de Google Maps centrado -->
-        <iframe 
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d975.0871285082306!2d-77.03395617084169!3d-12.097068799008553!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9105c88e9468f727%3A0x7b5e95a407cd1201!2sCalle%20Los%20Libertadores%20199%2C%20San%20Isidro%2015026!5e0!3m2!1ses-419!2spe!4v1693598578891!5m2!1ses-419!2spe"
-            allowfullscreen=""
-            loading="lazy"
-            referrerpolicy="no-referrer-when-downgrade"
-        ></iframe>
-
-        <p>Te amo mucho y gracias por estos meses a tu lado princesa</p>
-
     </div>
+
+    <script>
+        // Al hacer clic en el botón "Abrir", se ejecuta la animación y aparece la invitación
+        document.getElementById('open-btn').addEventListener('click', function() {
+            const envelope = document.getElementById('envelope');
+            envelope.classList.add('open');
+
+            setTimeout(function() {
+                document.getElementById('envelope-page').style.display = 'none';
+                document.getElementById('main-page').style.display = 'block';
+                document.getElementById('main-page').style.opacity = '1';
+            }, 1000); // Espera que la animación termine antes de mostrar la invitación
+        });
+    </script>
 
 </body>
 </html>

@@ -42,13 +42,13 @@
         /* La parte superior del sobre en forma de triángulo */
         .flap {
             position: absolute;
-            top: -100px; /* Mueve el triángulo hacia la parte superior del rectángulo */
+            top: 0;
             left: 50%;
             width: 0;
             height: 0;
             border-left: 150px solid transparent;
             border-right: 150px solid transparent;
-            border-bottom: 100px solid #dd77b1; /* Ahora el triángulo apunta hacia abajo, pero la rotación lo abrirá hacia arriba */
+            border-top: 100px solid #dd77b1; /* Ahora el triángulo está hacia abajo inicialmente */
             transform: translateX(-50%);
             transform-origin: bottom; /* La rotación parte desde la base del triángulo */
             transition: transform 1s ease-in-out;
@@ -56,7 +56,7 @@
         }
 
         .envelope.open .flap {
-            transform: translateX(-50%) rotateX(-180deg); /* Rotación hacia arriba */
+            transform: translateX(-50%) rotateX(180deg); /* Rotación hacia arriba */
         }
 
         .invitation-text {
@@ -242,6 +242,7 @@
 
 </body>
 </html>
+
 
 
 

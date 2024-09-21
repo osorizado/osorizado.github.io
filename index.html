@@ -24,14 +24,14 @@
             position: relative;
         }
 
-        /* Estilos del sobre cerrado con forma de carta */
+        /* Estilos del sobre cerrado con forma de sobre */
         .envelope {
             width: 300px;
             height: 200px;
             background-color: white;
             position: relative;
             border: 2px solid #dd77b1;
-            border-radius: 10px;
+            clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%); /* Forma de sobre */
             text-align: center;
             padding: 20px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -55,6 +55,7 @@
         }
 
         .envelope.open .flap {
+            background-color: #ffe4e1; /* Cambia de color a rosado cuando se abre */
             transform: translateX(-50%) rotateX(180deg);
         }
 
@@ -65,8 +66,8 @@
         }
 
         #open-btn {
-            margin-top: 20px;
-            padding: 10px 20px;
+            margin-top: 10px;
+            padding: 5px 10px; /* Tamaño ajustado al texto "Abrir" */
             background-color: #dd77b1;
             color: white;
             border: none;

@@ -24,10 +24,10 @@
             position: relative;
         }
 
-        /* Estilos del sobre cerrado */
+        /* Estilos del sobre cerrado con forma de carta */
         .envelope {
-            width: 250px;
-            height: 150px;
+            width: 300px;
+            height: 200px;
             background-color: white;
             position: relative;
             border: 2px solid #dd77b1;
@@ -36,6 +36,9 @@
             padding: 20px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
         }
 
         .flap {
@@ -55,8 +58,13 @@
             transform: translateX(-50%) rotateX(180deg);
         }
 
+        .invitation-text {
+            font-size: 24px; /* Letra grande */
+            color: #dd77b1;
+            z-index: 2;
+        }
+
         #open-btn {
-            position: relative;
             margin-top: 20px;
             padding: 10px 20px;
             background-color: #dd77b1;
@@ -70,17 +78,6 @@
         #open-btn:hover {
             background-color: #ffe4e1;
             color: #dd77b1;
-        }
-
-        /* Texto de la invitación en la carta */
-        .invitation-text {
-            font-size: 18px;
-            color: #dd77b1;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            z-index: 1;
         }
 
         /* Ocultar la página principal inicialmente */
@@ -143,23 +140,23 @@
         }
 
         .heart.top-left {
-            top: 0;
-            left: 0;
+            top: 10px;
+            left: 10px;
         }
 
         .heart.top-right {
-            top: 0;
-            right: 0;
+            top: 10px;
+            right: 10px;
         }
 
         .heart.bottom-left {
-            bottom: 0;
-            left: 0;
+            bottom: 10px;
+            left: 10px;
         }
 
         .heart.bottom-right {
-            bottom: 0;
-            right: 0;
+            bottom: 10px;
+            right: 10px;
         }
 
         /* Estilo del mapa ajustado */
@@ -177,15 +174,15 @@
     <!-- Página inicial con el sobre -->
     <div id="envelope-page">
         <div class="envelope" id="envelope">
-            <div class="flap"></div>
             <div class="invitation-text">¡Tienes una invitación, Flavita!</div>
             <button id="open-btn">Abrir</button>
+            <div class="flap"></div>
         </div>
     </div>
 
     <!-- Página principal con la invitación -->
     <div id="main-page">
-        <!-- Corazones en las esquinas -->
+        <!-- Corazones en las esquinas sobre el fondo blanco -->
         <div class="heart top-left"></div>
         <div class="heart top-right"></div>
         <div class="heart bottom-left"></div>
@@ -243,7 +240,5 @@
 
 </body>
 </html>
-
-
 
 

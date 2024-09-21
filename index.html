@@ -7,38 +7,73 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #ffe4e1; /* Fondo rosado */
+            background-color: #ffe4e1;
             color: #333;
-            padding: 20px;
-            max-width: 600px;
-            margin: 0 auto;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Página de inicio con el sobre */
+        #envelope-page {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #ffe4e1;
+        }
+
+        .envelope {
+            width: 200px;
+            height: 150px;
+            background-color: white;
             position: relative;
+            border: 2px solid #dd77b1;
+            border-radius: 10px;
+            text-align: center;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
-        h1 {
-            color: #dd77b1;
+
+        .envelope::before {
+            content: '';
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-width: 0 50px 20px 50px;
+            border-style: solid;
+            border-color: transparent transparent #dd77b1 transparent;
         }
+
+        #open-btn {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #dd77b1;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        /* Ocultar la página principal inicialmente */
+        #main-page {
+            display: none;
+        }
+
+        /* Página principal con la invitación */
         .container {
             background-color: white;
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             padding: 20px;
+            max-width: 600px;
+            margin: 20px auto;
         }
-        .details {
-            margin-top: 20px;
+
+        h1 {
+            color: #dd77b1;
         }
-        a {
-            color: #2980b9;
-            text-decoration: none;
-        }
-        a:hover {
-            text-decoration: underline;
-        }
-        .footer {
-            margin-top: 30px;
-            text-align: center;
-            font-size: 14px;
-            color: #777;
-        }
+
         img {
             display: block;
             margin: 20px auto;
@@ -46,32 +81,7 @@
             max-width: 300px;
             border-radius: 8px;
         }
-        /* Estilo para los corazones en las esquinas */
-        .heart {
-            position: absolute;
-            width: 50px;
-            height: 50px;
-            background: url('heart.jpg') no-repeat center center;
-            background-size: contain;
-        }
-        .heart.top-left {
-            top: 0;
-            left: 0;
-        }
-        .heart.top-right {
-            top: 0;
-            right: 0;
-        }
-        .heart.bottom-left {
-            bottom: 0;
-            left: 0;
-        }
-        .heart.bottom-right {
-            bottom: 0;
-            right: 0;
-        }
 
-        /* Estilos para el botón */
         .button {
             display: inline-block;
             padding: 10px 20px;
@@ -84,71 +94,75 @@
             cursor: pointer;
             text-decoration: none;
         }
-        .button:hover {
-            background-color: #ffe4e1;
-        }
 
-        /* Estilos para la imagen centrada */
-        .centered-image {
-            display: block;
-            margin: 0 auto;
-            max-width: 200px; /* Ajusta este valor según el tamaño de la imagen */
-        }
-
-        /* Estilo para el mapa */
         .map-container {
             text-align: center;
             margin-top: 20px;
         }
+
         iframe {
             width: 80%;
-            height: 230px; /* Ajusta la altura del mapa */
+            height: 230px;
             border: none;
         }
     </style>
 </head>
 <body>
 
-    <div class="heart top-left"></div>
-    <div class="heart top-right"></div>
-    <div class="heart bottom-left"></div>
-    <div class="heart bottom-right"></div>
-
-    <div class="container">
-        <h1>¡6 MESECITOS PRINCESITA!</h1>
-        <p>Llegamos a nuestro primer semestre mi amorcito y por eso el lugar especial de este mes será...</p>
-
-        <!-- Imagen centrada en lugar del texto -->
-        <img src="title.png" alt="Troppo" class="centered-image">
-
-        <p>Confirma tu asistencia mi amor en este link:</p>
-        <p>
-            <a href="https://restaurantes.mesa247.pe/reserva/e834112707733d34ffc164b04003d5b6/unete-a-la-reserva" class="button" target="_blank">
-                Confirmar asistencia
-            </a>
-        </p>
-
-        <img src="novios.JPG" alt="Foto de la invitación">
-
-        <div class="details">
-            <h2 style="color: #dd77b1;">Detalles de la reserva</h2>
-            <p><strong style="color: #dd77b1;">TE INVITA TU NOVIECITO:</strong> Percy Marca Rojas</p>
-            <p><strong style="color: #dd77b1;">Fecha:</strong> Lunes, 23 de Septiembre del 2024</p>
-            <p><strong style="color: #dd77b1;">Hora:</strong> 7:30 PM</p>
-            <p><strong style="color: #dd77b1;">Restaurante:</strong> Troppo</p>
-            <p><strong style="color: #dd77b1;">Dirección:</strong> Calle Los Libertadores 199, San Isidro</p>
+    <!-- Página inicial con el sobre -->
+    <div id="envelope-page">
+        <div class="envelope">
+            <h2>¡Tienes una invitación!</h2>
+            <button id="open-btn">Abrir</button>
         </div>
-
-        <!-- Mapa de Google Maps centrado -->
-        <div class="map-container">
-            <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3900.5404237094986!2d-77.03956722502872!3d-12.097112342511558!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9105c8616d2490c1%3A0x4094e5da9e874d8f!2sCalle%20Los%20Libertadores%20199%2C%20San%20Isidro%2015073%2C%20Per%C3%BA!5e0!3m2!1ses!2sus!4v1695217598567!5m2!1ses!2sus"
-                allowfullscreen="" loading="lazy"></iframe>
-        </div>
-
-        <p>Te amo mucho y gracias por estos meses a tu lado princesa</p>
-
     </div>
+
+    <!-- Página principal con la invitación -->
+    <div id="main-page">
+        <div class="container">
+            <h1>¡6 MESECITOS PRINCESITA!</h1>
+            <p>Llegamos a nuestro primer semestre mi amorcito y por eso el lugar especial de este mes será...</p>
+
+            <!-- Imagen centrada en lugar del texto -->
+            <img src="title.png" alt="Troppo" class="centered-image">
+
+            <p>Confirma tu asistencia mi amor en este link:</p>
+            <p>
+                <a href="https://restaurantes.mesa247.pe/reserva/e834112707733d34ffc164b04003d5b6/unete-a-la-reserva" class="button" target="_blank">
+                    Confirmar asistencia
+                </a>
+            </p>
+
+            <img src="novios.JPG" alt="Foto de la invitación">
+
+            <div class="details">
+                <h2 style="color: #dd77b1;">Detalles de la reserva</h2>
+                <p><strong style="color: #dd77b1;">TE INVITA TU NOVIECITO:</strong> Percy Marca Rojas</p>
+                <p><strong style="color: #dd77b1;">Fecha:</strong> Lunes, 23 de Septiembre del 2024</p>
+                <p><strong style="color: #dd77b1;">Hora:</strong> 7:30 PM</p>
+                <p><strong style="color: #dd77b1;">Restaurante:</strong> Troppo</p>
+                <p><strong style="color: #dd77b1;">Dirección:</strong> Calle Los Libertadores 199, San Isidro</p>
+            </div>
+
+            <!-- Mapa de Google Maps centrado -->
+            <div class="map-container">
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3900.5404237094986!2d-77.03956722502872!3d-12.097112342511558!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9105c8616d2490c1%3A0x4094e5da9e874d8f!2sCalle%20Los%20Libertadores%20199%2C%20San%20Isidro%2015073%2C%20Per%C3%BA!5e0!3m2!1ses!2sus!4v1695217598567!5m2!1ses!2sus"
+                    allowfullscreen="" loading="lazy"></iframe>
+            </div>
+
+            <p>Te amo mucho y gracias por estos meses a tu lado princesa</p>
+        </div>
+    </div>
+
+    <script>
+        // Al hacer clic en el botón "Abrir", oculta la página del sobre y muestra la página principal
+        document.getElementById('open-btn').addEventListener('click', function() {
+            document.getElementById('envelope-page').style.display = 'none';
+            document.getElementById('main-page').style.display = 'block';
+        });
+    </script>
 
 </body>
 </html>
+

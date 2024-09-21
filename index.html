@@ -55,6 +55,11 @@
             cursor: pointer;
         }
 
+        #open-btn:hover {
+            background-color: #ffe4e1;
+            color: #dd77b1;
+        }
+
         /* Ocultar la página principal inicialmente */
         #main-page {
             display: none;
@@ -68,6 +73,7 @@
             padding: 20px;
             max-width: 600px;
             margin: 20px auto;
+            position: relative;
         }
 
         h1 {
@@ -81,30 +87,7 @@
             max-width: 300px;
             border-radius: 8px;
         }
-                /* Estilo para los corazones en las esquinas */
-        .heart {
-            position: absolute;
-            width: 50px;
-            height: 50px;
-            background: url('heart.jpg') no-repeat center center;
-            background-size: contain;
-        }
-        .heart.top-left {
-            top: 0;
-            left: 0;
-        }
-        .heart.top-right {
-            top: 0;
-            right: 0;
-        }
-        .heart.bottom-left {
-            bottom: 0;
-            left: 0;
-        }
-        .heart.bottom-right {
-            bottom: 0;
-            right: 0;
-        }
+
         .button {
             display: inline-block;
             padding: 10px 20px;
@@ -117,14 +100,37 @@
             cursor: pointer;
             text-decoration: none;
         }
-        .button:hover {
-            background-color: #ffe4e1;
-        }
-        .map-container {
-            text-align: center;
-            margin-top: 20px;
+
+        /* Corazones en las esquinas para la segunda pantalla */
+        .heart {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            background: url('heart.jpg') no-repeat center center;
+            background-size: contain;
         }
 
+        .heart.top-left {
+            top: 0;
+            left: 0;
+        }
+
+        .heart.top-right {
+            top: 0;
+            right: 0;
+        }
+
+        .heart.bottom-left {
+            bottom: 0;
+            left: 0;
+        }
+
+        .heart.bottom-right {
+            bottom: 0;
+            right: 0;
+        }
+
+        /* Estilo del mapa ajustado */
         iframe {
             width: 80%;
             height: 230px;
@@ -137,17 +143,19 @@
     <!-- Página inicial con el sobre -->
     <div id="envelope-page">
         <div class="envelope">
-            <h2>¡Tienes una invitación!</h2>
+            <h2>¡Invitación para Flavita!</h2>
             <button id="open-btn">Abrir</button>
         </div>
     </div>
 
     <!-- Página principal con la invitación -->
     <div id="main-page">
+        <!-- Corazones en las esquinas -->
         <div class="heart top-left"></div>
         <div class="heart top-right"></div>
         <div class="heart bottom-left"></div>
         <div class="heart bottom-right"></div>
+
         <div class="container">
             <h1>¡6 MESECITOS PRINCESITA!</h1>
             <p>Llegamos a nuestro primer semestre mi amorcito y por eso el lugar especial de este mes será...</p>
@@ -155,7 +163,7 @@
             <!-- Imagen centrada en lugar del texto -->
             <img src="title.png" alt="Troppo" class="centered-image">
 
-            <p>Confirma tu asistencia mi amor en este link:</p>
+            <p>Confirma tu asistencia mi amor:</p>
             <p>
                 <a href="https://restaurantes.mesa247.pe/reserva/e834112707733d34ffc164b04003d5b6/unete-a-la-reserva" class="button" target="_blank">
                     Confirmar asistencia
@@ -194,4 +202,5 @@
 
 </body>
 </html>
+
 

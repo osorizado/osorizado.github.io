@@ -128,17 +128,26 @@
         .heart.top-right { top: 0; right: 0; }
         .heart.bottom-left { bottom: 0; left: 0; }
         .heart.bottom-right { bottom: 0; right: 0; }
+
+        /* Estilo del mapa */
+        iframe {
+            width: 80%;
+            height: 230px;
+            border: none;
+            display: block;
+            margin: 0 auto;
+        }
     </style>
 </head>
 <body>
 
     <!-- Página inicial con el sobre -->
     <div id="envelope-page">
-        <div class="invitation-text">¡Tienes una invitación, Flavita!</div> <!-- Título arriba del sobre -->
+        <div class="invitation-text">¡Tienes una invitación, Flavita!</div>
         <div class="envelope" id="envelope">
             <div class="flap"></div>
-            <button id="open-btn">Abrir</button> <!-- Botón original -->
-            <button id="open-btn2">Ahora abre este</button> <!-- Nuevo botón -->
+            <button id="open-btn">Abrir</button>
+            <button id="open-btn2">Ahora abre este</button>
         </div>
     </div>
 
@@ -163,6 +172,20 @@
             </p>
 
             <img src="novios.JPG" alt="Foto de la invitación">
+
+            <div class="details">
+                <h2 style="color: #dd77b1;">Detalles de la reserva</h2>
+                <p><strong style="color: #dd77b1;">TE INVITA TU NOVIECITO:</strong> Percy Marca Rojas</p>
+                <p><strong style="color: #dd77b1;">Fecha:</strong> Lunes, 23 de Septiembre del 2024</p>
+                <p><strong style="color: #dd77b1;">Hora:</strong> 7:30 PM</p>
+                <p><strong style="color: #dd77b1;">Restaurante:</strong> Troppo</p>
+                <p><strong style="color: #dd77b1;">Dirección:</strong> Calle Los Libertadores 199, San Isidro</p>
+            </div>
+
+            <div class="map-container">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3900.5404237094986!2d-77.03956722502872!3d-12.097112342511558!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9105c8616d2490c1%3A0x4094e5da9e874d8f!2sCalle%20Los%20Libertadores%20199%2C%20San%20Isidro%2015073%2C%20Per%C3%BA!5e0!3m2!1ses!2sus!4v1695217598567!5m2!1ses!2sus"
+                        allowfullscreen="" loading="lazy"></iframe>
+            </div>
         </div>
     </div>
 
@@ -174,35 +197,28 @@
         <div class="heart bottom-right"></div>
 
         <div class="container">
-            <h1 id="custom-text">¡Aquí puedes cambiar el título!</h1> <!-- Texto modificable -->
+            <h1 id="custom-text">¡Aquí puedes cambiar el título!</h1>
             <p>Este es otro mensaje que puedes modificar.</p>
 
             <img src="title.png" alt="Troppo">
 
-            <p>Confirma tu asistencia en este link:</p>
-            <p>
-                <a href="https://restaurantes.mesa247.pe/reserva/e834112707733d34ffc164b04003d5b6/unete-a-la-reserva" class="button" target="_blank">
-                    Confirmar asistencia
-                </a>
-            </p>
+            <div class="details">[Los mismos detalles de la reserva]</div>
 
-            <img src="novios.JPG" alt="Foto de la invitación">
+            <div class="map-container">
+                <iframe src="https://www.google.com/maps/embed?pb=[URL]" allowfullscreen="" loading="lazy"></iframe>
+            </div>
         </div>
     </div>
 
     <script>
-        // Botón "Abrir" funciona sin cambios
         document.getElementById('open-btn').addEventListener('click', function() {
             document.getElementById('envelope-page').style.display = 'none';
             document.getElementById('main-page').style.display = 'block';
-            document.getElementById('main-page').style.opacity = '1';
         });
 
-        // Botón "Ahora abre este" muestra la segunda invitación
         document.getElementById('open-btn2').addEventListener('click', function() {
             document.getElementById('envelope-page').style.display = 'none';
             document.getElementById('main-page2').style.display = 'block';
-            document.getElementById('main-page2').style.opacity = '1';
         });
     </script>
 
